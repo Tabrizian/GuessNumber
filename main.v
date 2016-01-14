@@ -1,4 +1,4 @@
-module main(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,suc,fail,win);
+module main(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,suc,fail,win);// I updated
   input I1,I2,I3,I4,enter;
   output reg [0:6] a1,a2,a3,a4,b1,b2,b3,b4,suc;
   output reg win;
