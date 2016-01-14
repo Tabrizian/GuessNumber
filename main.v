@@ -45,7 +45,7 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4);
         i=i+1;
       end
     if(I4 & run)
-     begin
+	  begin
         a4[i] = 1;
         i=i+1;
       end   
