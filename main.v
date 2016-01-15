@@ -102,7 +102,7 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
       end   
     if(enter & numb >=4)
       begin
-        suc = ((a1^b1))&((a2~^b2))&((a3~^b3))&((a4??~?^b4));
+        suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
         win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
         if(!win && turn <3)
           turn=turn+1;
