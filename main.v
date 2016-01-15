@@ -1,5 +1,5 @@
 module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,lose,reset,equal,bigger,smaller);
-  input I1, I2, I3, I4, enter,reset;
+  input I1, I2, I3, I4, enter,reset;//inputs
   output reg[0:6] a1,a2,a3,a4,suc,b1,b2,b3,b4;
   output reg[0:3] numa,numb;
   output reg win,lose,equal,bigger,smaller;
@@ -153,7 +153,7 @@ module test_get_input;
     #5 I4 = 0;
     #5 enter = 1;
     #5 enter = 0;
-    #5 I1 = 1;
+    #5 I1 = 0;
     #5 I1 = 0;
     #5 I2 = 1;
     #5 I2 = 0;
@@ -162,7 +162,36 @@ module test_get_input;
     #5 I4 = 1;
     #5 I4 = 0;
     #5 enter = 1;
-    #5 enter = 0;
-    
+    #5 enter = 0;    
+    #5 I1 = 0;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;    
+    #5 I1 = 0;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;    
+    #5 I1 = 0;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;    
   end
 endmodule
