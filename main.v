@@ -1,5 +1,5 @@
 module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,lose,reset,equal,bigger,smaller);
-  input I1, I2, I3, I4, enter,reset;//inputs
+  input I1, I2, I3, I4, enter,reset;//input 
   output reg[0:6] a1,a2,a3,a4,suc,b1,b2,b3,b4;
   output reg[0:3] numa,numb;
   output reg win,lose,equal,bigger,smaller;
