@@ -7,9 +7,13 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
   initial
   begin
    win = 0;
+   suc = 0;
    runa = 1;
    runb = 0;
    lose = 0;
+   equal = 0
+   bigger = 0;
+   smaller = 0;
    a1 = 0;
    a2 = 0;
    a3 = 0;
@@ -125,4 +129,40 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
     if(numb == 7)
      	runb = 0;
    end
+endmodule
+module test_get_input;
+  reg I1, I2, I3, I4, enter, reset;
+  wire[0:6] a1, a2, a3, a4, suc, b1, b2, b3, b4;
+  wire[0:3] numa, numb;
+  wire win, lose, equal, bigger, smaller;
+  get_input test_get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,lose,reset,equal,bigger,smaller);
+  initial begin
+    I1 = 0;
+    I2 = 0;
+    I3 = 0;
+    I4 = 0;
+    enter = 0;
+    reset = 0;
+    #5 I1 = 1;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;
+    #5 I1 = 1;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;
+    
+  end
 endmodule
