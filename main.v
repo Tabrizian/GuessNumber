@@ -11,7 +11,7 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
    runa = 1;
    runb = 0;
    lose = 0;
-   equal = 0
+   equal = 0;
    bigger = 0;
    smaller = 0;
    a1 = 0;
