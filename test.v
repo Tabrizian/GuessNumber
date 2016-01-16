@@ -69,7 +69,7 @@ module test_2; // Very simple testbench to check A = 42413 B = 4241, 42413, Winn
     #5 I2 = 0;    
     #5 I4 = 1;
     #5 I4 = 0;
-    #5 I4 = 1;
+    #5 I1 = 1;
     #5 I1 = 0;
     #5 enter = 1;
     #5 enter = 0;
