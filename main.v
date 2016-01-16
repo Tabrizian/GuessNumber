@@ -104,11 +104,20 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
       begin
         suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
         win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
+		if(win)
+		begin
+			smaller = 0;
+            bigger = 0;
+            equal = 1;
+		end
         if(!win && turn <3)
-          turn=turn+1;
-        if(!win && turn >= 3)
-          lose = 1;
-        if(numb > numa)
+		begin
+			turn=turn+1;
+			b1=0000000;
+			b2=0000000;
+			b3=0000000;
+			b4=0000000;
+			if(numb > numa)
           begin
             smaller = 1;
             bigger = 0;
@@ -126,6 +135,11 @@ module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,los
             bigger = 1;
             equal = 0;
           end
+			numb=0;
+		end
+        if(!win && turn >= 3)
+          lose = 1;
+        
       end
     if(numb == 7)
      	runb = 0;
@@ -150,8 +164,10 @@ module test_get_input;
     #5 I2 = 0;
     #5 I3 = 1;
     #5 I3 = 0;
-    #5 I4 = 1;
+	#5 I4 = 1;
     #5 I4 = 0;
+	#5 I1 = 1;
+    #5 I1 = 0;
     #5 enter = 1;
     #5 enter = 0;
     #5 I1 = 1;
@@ -162,6 +178,32 @@ module test_get_input;
     #5 I3 = 0;
     #5 I4 = 1;
     #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;
+	#5 I1 = 1;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+    #5 I4 = 1;
+    #5 I4 = 0;
+	#5 I4 = 1;
+    #5 I4 = 0;
+	#5 I4 = 1;
+    #5 I4 = 0;
+    #5 enter = 1;
+    #5 enter = 0;
+	#5 I1 = 1;
+    #5 I1 = 0;
+    #5 I2 = 1;
+    #5 I2 = 0;
+    #5 I3 = 1;
+    #5 I3 = 0;
+	#5 I4 = 1;
+    #5 I4 = 0;
+	#5 I1 = 1;
+    #5 I1 = 0;
     #5 enter = 1;
     #5 enter = 0;
     
