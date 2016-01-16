@@ -86,37 +86,32 @@ module test(I1,I2,I3,I4,enter,win,lose,reset,equal,bigger,smaller,nums);//,a1,a2
 			if(numb >=4) begin
 				suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
 				win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
-				if(win) begin
+				if(!win && turn <3) begin
+					turn=turn+1;
+					b1=0;
+					b2=0;
+					b3=0;
+					b4=0;
+				end
+				if(numb > numa) begin
+					smaller = 1;
+					bigger = 0;
+					equal = 0;
+				end
+				if(numb == numa) begin
 					smaller = 0;
 					bigger = 0;
 					equal = 1;
 				end
-				if(!win && turn <3) begin
-					turn=turn+1;
-					b1=0000000;
-					b2=0000000;
-					b3=0000000;
-					b4=0000000;
-					if(numb > numa) begin
-						smaller = 1;
-						bigger = 0;
-						equal = 0;
-					end
-					if(numb == numa) begin
-						smaller = 0;
-						bigger = 0;
-						equal = 1;
-					end
-					if(numb < numa) begin
-						smaller = 0;
-						bigger = 1;
-						equal = 0;
-					end
-					numb=0;
-				end 
-				if(!win && turn >= 3)
-					lose = 1;
-			end
+				if(numb < numa) begin
+					smaller = 0;
+					bigger = 1;
+					equal = 0;
+				end
+			  numb = 0;
+			end 
+			if(!win && turn >= 3)
+				lose = 1;
 		end
 		else if(reset) begin
 			win = 0;
