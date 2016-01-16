@@ -1,169 +1,152 @@
-module get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,lose,reset,equal,bigger,smaller);
-  input I1, I2, I3, I4, enter,reset;
-  input I1, I2, I3, I4, enter,reset;//input 
-  output reg[0:6] a1,a2,a3,a4,suc,b1,b2,b3,b4;
-  output reg[0:3] numa,numb;
-  output reg win,lose,equal,bigger,smaller;
-  reg runa,runb,turn;
-  initial
-  begin
-   win = 0;
-   suc = 0;
-   runa = 1;
-   runb = 0;
-   lose = 0;
-   equal = 0;
-   bigger = 0;
-   smaller = 0;
-   a1 = 0;
-   a2 = 0;
-   a3 = 0;
-   a4 = 0;
-   b1 = 0;
-   b2 = 0;
-   b3 = 0;
-   b4 = 0;
-   numa = 0;
-   numb = 0;
-   turn = 0;
-  end
-  always @(posedge reset)
-  begin
-    win = 0;
-    runa = 1;
-    runb = 0;
-    lose = 0;
-    a1 = 0;
-    a2 = 0;
-    a3 = 0;
-    a4 = 0;
-    b1 = 0;
-    b2 = 0;
-    b3 = 0;
-    b4 = 0;
-    numa = 0;
-    numb = 0;
-    turn = 0;
-  end
-  always @(posedge I1 or posedge I2 or posedge I3 or posedge I4 or posedge enter)
-    begin
-    if(I1 & runa)
-      begin
-        a1[numa] = 1;
-        numa=numa + 1;
-      end
-    if(I2 & runa)
-      begin
-        a2[numa] = 1;
-        numa=numa+1;
-      end
-    if(I3 & runa)
-      begin
-        a3[numa] = 1;
-        numa=numa+1;
-      end
-    if(I4 & runa)
-     begin
-        a4[numa] = 1;
-        numa=numa+1;
-      end   
-    if(enter & numa >=4)
-      begin
-        runa = 0;
-        runb = 1;
-      end
-    if(numa == 7)
-      begin
-     	  runa = 0;
-     	  runb = 1;
-   	  end
-   end
-    always @(posedge I1 or posedge I2 or posedge I3 or posedge I4 or posedge enter)
-    begin
-    if(I1 & runb)
-      begin
-        b1[numb] = 1;
-        numb=numb + 1;
-      end
-    if(I2 & runb)
-      begin
-        b2[numb] = 1;
-        numb=numb+1;
-      end
-    if(I3 & runb)
-      begin
-        b3[numb] = 1;
-        numb=numb+1;
-      end
-    if(I4 & runb)
-     begin
-        b4[numb] = 1;
-        numb=numb+1;
-      end   
-    if(enter & numb >=4)
-      begin
-        suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
-        win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
-        if(!win && turn <3)
-          turn=turn+1;
-        if(!win && turn >= 3)
-          lose = 1;
-        if(numb > numa)
-          begin
-            smaller = 1;
-            bigger = 0;
-            equal = 0;
-          end
-        if(numb == numa)
-          begin
-            smaller = 0;
-            bigger = 0;
-            equal = 1;
-          end
-       if(numb < numa)
-          begin
-            smaller = 0;
-            bigger = 1;
-            equal = 0;
-          end
-      end
-    if(numb == 7)
-     	runb = 0;
-   end
-endmodule
-module test_get_input;
-  reg I1, I2, I3, I4, enter, reset;
-  wire[0:6] a1, a2, a3, a4, suc, b1, b2, b3, b4;
-  wire[0:3] numa, numb;
-  wire win, lose, equal, bigger, smaller;
-  get_input test_get_input(I1,I2,I3,I4,enter,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc,win,lose,reset,equal,bigger,smaller);
-  initial begin
-    I1 = 0;
-    I2 = 0;
-    I3 = 0;
-    I4 = 0;
-    enter = 0;
-    reset = 0;
-    #5 I1 = 1;
-    #5 I1 = 0;
-    #5 I2 = 1;
-    #5 I2 = 0;
-    #5 I3 = 1;
-    #5 I3 = 0;
-    #5 I4 = 1;
-    #5 I4 = 0;
-    #5 enter = 1;
-    #5 enter = 0;
-    #5 I1 = 1;
-    #5 I1 = 0;
-    #5 I2 = 1;
-    #5 I2 = 0;
-    #5 I3 = 1;
-    #5 I3 = 0;
-    #5 I4 = 1;
-    #5 I4 = 0;
-    #5 enter = 1;
-    #5 enter = 0;
-    
-  end
+module test(I1,I2,I3,I4,enter,win,lose,reset,equal,bigger,smaller,nums);//,a1,a2,a3,a4,b1,b2,b3,b4,numa,numb,suc);
+	input I1, I2, I3, I4, enter,reset; 
+	reg[0:6] a1,a2,a3,a4,suc,b1,b2,b3,b4;
+	reg[0:3] numa,numb;
+	output reg win,lose;
+	output reg equal,bigger,smaller;
+	reg runa,runb;
+	reg [0:3] turn;
+	output reg [0:3] nums;
+	initial begin
+		nums = 0;
+		win = 0;
+		suc = 0;
+		runa = 1;
+		runb = 0;
+		lose = 0;
+		equal = 0;
+		bigger = 0;
+		smaller = 0;
+		a1 = 0;
+		a2 = 0;
+		a3 = 0;
+		a4 = 0;
+		b1 = 0;
+		b2 = 0;
+		b3 = 0;
+		b4 = 0;
+		numa = 0;
+		numb = 0;
+		turn = 0;
+	end
+	always @(posedge I1 or posedge I2 or posedge I3 or posedge I4 or posedge enter or posedge reset) begin
+		if(I1) begin
+		nums = 0;
+		nums[0] = 1;
+			if(runa) begin
+				a1[numa] = 1;
+				numa = numa + 1;
+			end
+			if(runb) begin
+				b1[numb] = 1;
+				numb=numb + 1;
+			end
+		end
+		else if(I2) begin
+		nums = 0;
+		nums[1] = 1;
+			if(runa) begin
+				a2[numa] = 1;
+				numa=numa+1;
+			end
+			if(runb) begin
+				b2[numb] = 1;
+				numb=numb+1;
+			end
+		end
+		else if(I3) begin
+		nums = 0;
+		nums[2] = 1;
+			if(runa) begin
+				a3[numa] = 1;
+				numa=numa+1;
+			end
+			if(runb) begin
+				b3[numb] = 1;
+				numb=numb+1;
+			end
+		end
+		else if(I4) begin
+		nums = 0;
+		nums[3] = 1;
+			if(runa) begin
+				a4[numa] = 1;
+				numa=numa+1;
+			end
+			if(runb) begin
+				b4[numb] = 1;
+				numb=numb+1;
+			end   
+		end
+		else if(enter) begin
+			if(numa >=4) begin
+				runa = 0;
+				runb = 1;
+			end
+			if(numb >=4) begin
+				suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
+				win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
+				if(win) begin
+					smaller = 0;
+					bigger = 0;
+					equal = 1;
+				end
+				if(!win && turn <3) begin
+					turn=turn+1;
+					b1=0000000;
+					b2=0000000;
+					b3=0000000;
+					b4=0000000;
+					if(numb > numa) begin
+						smaller = 1;
+						bigger = 0;
+						equal = 0;
+					end
+					if(numb == numa) begin
+						smaller = 0;
+						bigger = 0;
+						equal = 1;
+					end
+					if(numb < numa) begin
+						smaller = 0;
+						bigger = 1;
+						equal = 0;
+					end
+					numb=0;
+				end 
+				if(!win && turn >= 3)
+					lose = 1;
+			end
+		end
+		else if(reset) begin
+			win = 0;
+			suc = 0;
+			runa = 1;
+			runb = 0;
+			lose = 0;
+			equal = 0;
+			bigger = 0;
+			smaller = 0;
+			nums = 0;
+			a1 = 0;
+			a2 = 0;
+			a3 = 0;
+			a4 = 0;
+			b1 = 0;
+			b2 = 0;
+			b3 = 0;
+			b4 = 0;
+			numa = 0;
+			numb = 0;
+			turn = 0;
+		end
+		else begin
+			if(numa == 7) begin
+				runa = 0;
+				runb = 1;
+			end
+			if(numb == 7)
+				runb = 0;
+		end
+	end
 endmodule
