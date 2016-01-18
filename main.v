@@ -83,6 +83,13 @@ module test(I1,I2,I3,I4,enter,win,lose,reset,equal,bigger,smaller,nums);//,a1,a2
 				runa = 0;
 				runb = 1;
 			end
+			else if(numa < 4) begin
+			  a1 = 0;
+			  a2 = 0;
+			  a3 = 0;
+			  a4 = 0;
+			  numa = 0;
+			end
 			if(numb >=4) begin
 				suc = (a1~^b1)&(a2~^b2)&(a3~^b3)&(a4~^b4);
 				win = suc[0]&suc[1]&suc[2]&suc[3]&suc[4]&suc[5]&suc[6];
